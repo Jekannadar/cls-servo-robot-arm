@@ -1,0 +1,78 @@
+[debug] [zinc] IncrementalCompile -----------
+[debug] IncrementalCompile.incrementalCompile
+[debug] previous = Stamps for: 96 products, 2 sources, 4 libraries
+[debug] current source = Set(${BASE}/src/main/scala/model/repository.scala, ${BASE}/src/main/scala/model/robot.scala)
+[debug] > initialChanges = InitialChanges(Changes(added = Set(), removed = Set(), changed = Set(${BASE}/src/main/scala/model/robot.scala), unmodified = ...),Set(),Set(),API Changes: Set())
+[debug] 
+[debug] Initial source changes:
+[debug] 	removed: Set()
+[debug] 	added: Set()
+[debug] 	modified: Set(${BASE}/src/main/scala/model/robot.scala)
+[debug] Invalidated products: Set()
+[debug] External API changes: API Changes: Set()
+[debug] Modified binary dependencies: Set()
+[debug] Initial directly invalidated classes: Set(verycoolrobotstuff.robot.MountingPlateQuadBeam, verycoolrobotstuff.robot.RotaryOutput, verycoolrobotstuff.robot.RotaryMountingPlateSingleBeam, verycoolrobotstuff.robot.RotaryMountingPlateNoBeam, verycoolrobotstuff.robot.xl430w250trotary, verycoolrobotstuff.robot.MountingPlateSingleBeam, verycoolrobotstuff.robot.CrossRollerBearing, verycoolrobotstuff.robot.MountingPlateNoBeam, verycoolrobotstuff.robot.QuadBeam, verycoolrobotstuff.robot.HighTorqueJointsSpecifier, verycoolrobotstuff.robot.MountingPlateDoubleBeam, verycoolrobotstuff.robot.HighTorqueShoulder, verycoolrobotstuff.robot.SingleBeam, verycoolrobotstuff.robot.HighTorqueShoulderAndElbow, verycoolrobotstuff.robot.OutputMountNoBeam, verycoolrobotstuff.robot.Effector, verycoolrobotstuff.robot.Double, verycoolrobotstuff.robot.Connector, verycoolrobotstuff.robot.Gripper, verycoolrobotstuff.robot.BaseCompatible, verycoolrobotstuff.robot.OutputMountDoubleBeam, verycoolrobotstuff.robot.Base, verycoolrobotstuff.robot.RotaryMountingPlateQuadBeam, verycoolrobotstuff.robot.RotaryMountingPlateDoubleBeam, verycoolrobotstuff.robot.HighTorqueNone, verycoolrobotstuff.robot.NoConnector, verycoolrobotstuff.robot.NotRotary, verycoolrobotstuff.robot.MountingPlate, verycoolrobotstuff.robot.Robot, verycoolrobotstuff.robot.OutputMountSingleBeam, verycoolrobotstuff.robot.OutputMountQuadBeam, verycoolrobotstuff.robot.Servo, verycoolrobotstuff.robot.IndustrialBallBearing, verycoolrobotstuff.robot.Rotary, verycoolrobotstuff.robot.Drivable, verycoolrobotstuff.robot.Bearing, verycoolrobotstuff.robot.DoubleBeam, verycoolrobotstuff.robot.xl430w250t, verycoolrobotstuff.robot.OutputMount, verycoolrobotstuff.RobotCalculus, verycoolrobotstuff.robot.Quad, verycoolrobotstuff.robot.Single)
+[debug] Sources indirectly invalidated by:
+[debug] 	product: Set()
+[debug] 	binary dep: Set()
+[debug] 	external source: Set()
+[debug] All initially invalidated classes: Set(verycoolrobotstuff.robot.MountingPlateQuadBeam, verycoolrobotstuff.robot.RotaryOutput, verycoolrobotstuff.robot.RotaryMountingPlateSingleBeam, verycoolrobotstuff.robot.RotaryMountingPlateNoBeam, verycoolrobotstuff.robot.xl430w250trotary, verycoolrobotstuff.robot.MountingPlateSingleBeam, verycoolrobotstuff.robot.CrossRollerBearing, verycoolrobotstuff.robot.MountingPlateNoBeam, verycoolrobotstuff.robot.QuadBeam, verycoolrobotstuff.robot.HighTorqueJointsSpecifier, verycoolrobotstuff.robot.MountingPlateDoubleBeam, verycoolrobotstuff.robot.HighTorqueShoulder, verycoolrobotstuff.robot.SingleBeam, verycoolrobotstuff.robot.HighTorqueShoulderAndElbow, verycoolrobotstuff.robot.OutputMountNoBeam, verycoolrobotstuff.robot.Effector, verycoolrobotstuff.robot.Double, verycoolrobotstuff.robot.Connector, verycoolrobotstuff.robot.Gripper, verycoolrobotstuff.robot.BaseCompatible, verycoolrobotstuff.robot.OutputMountDoubleBeam, verycoolrobotstuff.robot.Base, verycoolrobotstuff.robot.RotaryMountingPlateQuadBeam, verycoolrobotstuff.robot.RotaryMountingPlateDoubleBeam, verycoolrobotstuff.robot.HighTorqueNone, verycoolrobotstuff.robot.NoConnector, verycoolrobotstuff.robot.NotRotary, verycoolrobotstuff.robot.MountingPlate, verycoolrobotstuff.robot.Robot, verycoolrobotstuff.robot.OutputMountSingleBeam, verycoolrobotstuff.robot.OutputMountQuadBeam, verycoolrobotstuff.robot.Servo, verycoolrobotstuff.robot.IndustrialBallBearing, verycoolrobotstuff.robot.Rotary, verycoolrobotstuff.robot.Drivable, verycoolrobotstuff.robot.Bearing, verycoolrobotstuff.robot.DoubleBeam, verycoolrobotstuff.robot.xl430w250t, verycoolrobotstuff.robot.OutputMount, verycoolrobotstuff.RobotCalculus, verycoolrobotstuff.robot.Quad, verycoolrobotstuff.robot.Single)
+[debug] All initially invalidated sources:Set(${BASE}/src/main/scala/model/robot.scala)
+[debug] Initial set of included nodes: verycoolrobotstuff.robot.MountingPlateQuadBeam, verycoolrobotstuff.robot.RotaryOutput, verycoolrobotstuff.robot.RotaryMountingPlateSingleBeam, verycoolrobotstuff.robot.RotaryMountingPlateNoBeam, verycoolrobotstuff.robot.xl430w250trotary, verycoolrobotstuff.robot.MountingPlateSingleBeam, verycoolrobotstuff.robot.CrossRollerBearing, verycoolrobotstuff.robot.MountingPlateNoBeam, verycoolrobotstuff.robot.QuadBeam, verycoolrobotstuff.robot.HighTorqueJointsSpecifier, verycoolrobotstuff.robot.MountingPlateDoubleBeam, verycoolrobotstuff.robot.HighTorqueShoulder, verycoolrobotstuff.robot.SingleBeam, verycoolrobotstuff.robot.HighTorqueShoulderAndElbow, verycoolrobotstuff.robot.OutputMountNoBeam, verycoolrobotstuff.robot.Effector, verycoolrobotstuff.robot.Double, verycoolrobotstuff.robot.Connector, verycoolrobotstuff.robot.Gripper, verycoolrobotstuff.robot.BaseCompatible, verycoolrobotstuff.robot.OutputMountDoubleBeam, verycoolrobotstuff.robot.Base, verycoolrobotstuff.robot.RotaryMountingPlateQuadBeam, verycoolrobotstuff.robot.RotaryMountingPlateDoubleBeam, verycoolrobotstuff.robot.HighTorqueNone, verycoolrobotstuff.robot.NoConnector, verycoolrobotstuff.robot.NotRotary, verycoolrobotstuff.robot.MountingPlate, verycoolrobotstuff.robot.Robot, verycoolrobotstuff.robot.OutputMountSingleBeam, verycoolrobotstuff.robot.OutputMountQuadBeam, verycoolrobotstuff.robot.Servo, verycoolrobotstuff.robot.IndustrialBallBearing, verycoolrobotstuff.robot.Rotary, verycoolrobotstuff.robot.Drivable, verycoolrobotstuff.robot.Bearing, verycoolrobotstuff.robot.DoubleBeam, verycoolrobotstuff.robot.xl430w250t, verycoolrobotstuff.robot.OutputMount, verycoolrobotstuff.RobotCalculus, verycoolrobotstuff.robot.Quad, verycoolrobotstuff.robot.Single
+[debug] Including verycoolrobotstuff.robot.HighTorqueShoulderAndElbow by verycoolrobotstuff.robot.HighTorqueJointsSpecifier
+[debug] Including verycoolrobotstuff.robot.HighTorqueNone by verycoolrobotstuff.robot.HighTorqueJointsSpecifier
+[debug] Including verycoolrobotstuff.robot.HighTorqueShoulder by verycoolrobotstuff.robot.HighTorqueJointsSpecifier
+[debug] Including verycoolrobotstuff.robot.Gripper by verycoolrobotstuff.robot.Effector
+[debug] Including verycoolrobotstuff.robot.RotaryMountingPlateDoubleBeam by verycoolrobotstuff.robot.Double
+[debug] Including verycoolrobotstuff.robot.DoubleBeam by verycoolrobotstuff.robot.Double
+[debug] Including verycoolrobotstuff.robot.OutputMountDoubleBeam by verycoolrobotstuff.robot.Double
+[debug] Including verycoolrobotstuff.robot.OutputMountSingleBeam by verycoolrobotstuff.robot.Connector
+[debug] Including verycoolrobotstuff.robot.OutputMountQuadBeam by verycoolrobotstuff.robot.Connector
+[debug] Including verycoolrobotstuff.robot.Base by verycoolrobotstuff.robot.BaseCompatible
+[debug] Including verycoolrobotstuff.robot.xl430w250t by verycoolrobotstuff.robot.NotRotary
+[debug] Including verycoolrobotstuff.robot.OutputMount by verycoolrobotstuff.robot.Drivable
+[debug] compilation cycle 1
+[info] compiling 1 Scala source to C:\Users\Jekannadar\IdeaProjects\CLS-Servo-Robot\target\scala-2.13\classes ...
+[debug] Getting org.scala-sbt:compiler-bridge_2.13:1.5.1:compile for Scala 2.13.5
+[debug] [zinc] Running cached compiler 105a75b3 for Scala compiler version 2.13.5
+[debug] [zinc] The Scala compiler is invoked with:
+[debug] 	-bootclasspath
+[debug] 	C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.5\scala-library-2.13.5.jar
+[debug] 	-classpath
+[debug] 	C:\Users\Jekannadar\IdeaProjects\CLS-Servo-Robot\target\scala-2.13\classes;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\combinators\shapeless-feat_2.13\0.2.5\shapeless-feat_2.13-0.2.5.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\combinators\cls-scala_2.13\3.0.0\cls-scala_2.13-3.0.0.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\chuusai\shapeless_2.13\2.3.3\shapeless_2.13-2.3.3.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-compiler\2.13.5\scala-compiler-2.13.5.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\ch\qos\logback\logback-classic\1.2.3\logback-classic-1.2.3.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\com\typesafe\scala-logging\scala-logging_2.13\3.9.2\scala-logging_2.13-3.9.2.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\modules\scala-parallel-collections_2.13\1.0.0\scala-parallel-collections_2.13-1.0.0.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-reflect\2.13.5\scala-reflect-2.13.5.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\jline\jline\3.19.0\jline-3.19.0.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\net\java\dev\jna\jna\5.3.1\jna-5.3.1.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\ch\qos\logback\logback-core\1.2.3\logback-core-1.2.3.jar;C:\Users\Jekannadar\AppData\Local\Coursier\Cache\v1\https\repo1.maven.org\maven2\org\slf4j\slf4j-api\1.7.26\slf4j-api-1.7.26.jar
+[debug] Invalidating (transitively) by inheritance from verycoolrobotstuff.RobotCalculus...
+[debug] Initial set of included nodes: verycoolrobotstuff.RobotCalculus
+[debug] Invalidated by transitive inheritance dependency: Set(verycoolrobotstuff.RobotCalculus)
+[debug] Change NamesChange(verycoolrobotstuff.RobotCalculus,ModifiedNames(changes = UsedName(available,[Default]))) invalidates 1 classes due to The verycoolrobotstuff.RobotCalculus has the following regular definitions changed:
+[debug] 	UsedName(available,[Default]).
+[debug]   > by transitive inheritance: Set(verycoolrobotstuff.RobotCalculus)
+[debug]   > 
+[debug]   > 
+[debug]         
+[debug] Invalidating (transitively) by inheritance from verycoolrobotstuff.robot.Gripper...
+[debug] Initial set of included nodes: verycoolrobotstuff.robot.Gripper
+[debug] Invalidated by transitive inheritance dependency: Set(verycoolrobotstuff.robot.Gripper)
+[debug] None of the modified names appears in source file of model.Repository.gripper. This dependency is not being considered for invalidation.
+[debug] Change NamesChange(verycoolrobotstuff.robot.Gripper,ModifiedNames(changes = UsedName(finalize,[Default]))) invalidates 1 classes due to The verycoolrobotstuff.robot.Gripper has the following regular definitions changed:
+[debug] 	UsedName(finalize,[Default]).
+[debug]   > by transitive inheritance: Set(verycoolrobotstuff.robot.Gripper)
+[debug]   > 
+[debug]   > 
+[debug]         
+[debug] Invalidating (transitively) by inheritance from verycoolrobotstuff.Tagged...
+[debug] Initial set of included nodes: verycoolrobotstuff.Tagged
+[debug] Invalidated by transitive inheritance dependency: Set(verycoolrobotstuff.Tagged)
+[debug] Change NamesChange(verycoolrobotstuff.Tagged,ModifiedNames(changes = UsedName(wait,[Default]), UsedName(finalize,[Default]), UsedName(isInstanceOf,[Default]), UsedName(apply,[Default]), UsedName(toString,[Default]), UsedName(hashCode,[Default]), UsedName(notify,[Default]), UsedName(!=,[Default]), UsedName(eq,[Default]), UsedName(notifyAll,[Default]), UsedName(synchronized,[Default]), UsedName(weakTypeTag,[Default]), UsedName(==,[Default]), UsedName(##,[Default]), UsedName(getClass,[Default]), UsedName(ne,[Default]), UsedName(asInstanceOf,[Default]), UsedName(clone,[Default]), UsedName(C,[Default]), UsedName(Aux,[Default]), UsedName(equals,[Default]), UsedName(Tagged,[Default]), UsedName(c,[Default]))) invalidates 1 classes due to The verycoolrobotstuff.Tagged has the following regular definitions changed:
+[debug] 	UsedName(wait,[Default]), UsedName(finalize,[Default]), UsedName(isInstanceOf,[Default]), UsedName(apply,[Default]), UsedName(toString,[Default]), UsedName(hashCode,[Default]), UsedName(notify,[Default]), UsedName(!=,[Default]), UsedName(eq,[Default]), UsedName(notifyAll,[Default]), UsedName(synchronized,[Default]), UsedName(weakTypeTag,[Default]), UsedName(==,[Default]), UsedName(##,[Default]), UsedName(getClass,[Default]), UsedName(ne,[Default]), UsedName(asInstanceOf,[Default]), UsedName(clone,[Default]), UsedName(C,[Default]), UsedName(Aux,[Default]), UsedName(equals,[Default]), UsedName(Tagged,[Default]), UsedName(c,[Default]).
+[debug]   > by transitive inheritance: Set(verycoolrobotstuff.Tagged)
+[debug]   > 
+[debug]   > 
+[debug]         
+[debug] New invalidations:
+[debug] Initial set of included nodes: 
+[debug] Previously invalidated, but (transitively) depend on new invalidations:
+[debug] Final step, transitive dependencies:
+[debug] 	Set()
+[debug] No classes were invalidated.
+[debug] Scala compilation took 0.2961176 s
+[info] done compiling

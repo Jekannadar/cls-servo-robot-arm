@@ -1,0 +1,10 @@
+[debug] > Exec(all {file:/C:/Users/Jekannadar/IdeaProjects/CLS-Servo-Robot/}cls-servo-robot/products {file:/C:/Users/Jekannadar/IdeaProjects/CLS-Servo-Robot/}cls-servo-robot/test:products, None, None)
+[debug] Evaluating tasks: Compile / products, Test / products
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[info] compiling 1 Scala source to C:\Users\Jekannadar\IdeaProjects\CLS-Servo-Robot\target\scala-2.13\classes ...
+[info] done compiling
+[debug] Forcing garbage collection...
+[success] Total time: 1 s, completed 3 May 2021, 17:16:08
+[debug] > Exec(idea-shell, None, None)
+[debug] > Exec(, None, None)
+[debug] > Exec(idea-shell, None, None)
