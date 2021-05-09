@@ -1,7 +1,7 @@
 package verycoolrobotstuff
 
 import model.Repository
-import verycoolrobotstuff.robot.{Base, BaseCompatible, xl430w250t}
+import verycoolrobotstuff.robot.{Base, BaseCompatible, HighTorqueNone, IndustrialBallBearing, OutputMount, OutputMountNoBeam, RotaryMountingPlateNoBeam, xl430w250t}
 
 import scala.reflect.runtime.universe
 
@@ -48,7 +48,6 @@ package robot {
 
   case class HighTorqueNone() extends HighTorqueJointsSpecifier
 
-
   case class CrossRollerBearing() extends Bearing
 
   case class IndustrialBallBearing() extends Bearing
@@ -93,7 +92,42 @@ package robot {
   case class Base(bearing: Bearing, mountingPlate: MountingPlate with BaseCompatible with NotRotary, highTorqueJointsSpecifier: HighTorqueJointsSpecifier)
 
   case class Gripper() extends Effector with NotRotary
+
+  //Type Class containing all Physical, ergo non structural information
+
+  object Physical{
+    trait Dimensions[A]{
+      val translateX: scala.Double
+      val translateY: scala.Double
+      val translateZ: scala.Double
+      val weight: scala.Double
+    }
+
+    object Dimensions {
+      implicit val baseDimensions: Dimensions[Base] = new Dimensions[Base] {
+        override val translateX: scala.Double = 0.0
+        override val translateY: scala.Double = 0.0
+        override val translateZ: scala.Double = 0.0
+        override val weight: scala.Double = 0.0
+      }
+
+      implicit val outputMountDimensions: Dimensions[OutputMountNoBeam] = new Dimensions[OutputMountNoBeam] {
+        override val translateX: scala.Double = 0.0
+        override val translateY: scala.Double = 0.0
+        override val translateZ: scala.Double = 0.0
+        override val weight: scala.Double = 0.0
+      }
+    }
+
+    def getDimensions[A](a: A)(implicit dimensions: Dimensions[A]): Dimensions[A] = dimensions
+
+    getDimensions(Base(null,null,null)).translateX
+    getDimensions(OutputMountNoBeam(null)).translateX
+  }
+
 }
+
+
 
 import scala.reflect.runtime.universe._
 trait Tagged {
@@ -124,5 +158,6 @@ object RobotCalculus extends App {
   val result = availRepo.inhabit[Base]()
   //result.rules.foreach(println(_))
   result.interpretedTerms.values(15)._2.foreach(println(_))
+
 }
 
