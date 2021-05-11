@@ -2,18 +2,19 @@ package model
 
 import io.netty.buffer.{ByteBuf, Unpooled}
 
-import java.nio.{ByteBuffer, ByteOrder}
+import java.io.FileOutputStream
 import java.nio.file.{Files, Paths}
 import scala.math.{cos, sin}
+
 
 case class Point(var x: Float, var y: Float,var z: Float)
 
 case class Triangle(normal: Point, v1: Point,v2: Point,v3: Point,color: Short)
 
-class stl(path:String) {
+class Stl(path:String) {
 
   var triangles : Vector[Triangle] = Vector()
-  var header: ByteBuf = Unpooled.EMPTY_BUFFER
+  var header: ByteBuf = Unpooled.buffer()
   var count: Int = 0
 
   val bytes = Unpooled.copiedBuffer(Files.readAllBytes(Paths.get(path)))
@@ -21,14 +22,16 @@ class stl(path:String) {
   header = bytes.readBytes(80)
   count = bytes.readIntLE()
 
+
   while (bytes.isReadable) {
-    triangles :+ Triangle(
+    triangles = triangles :+ Triangle(
       Point(bytes.readFloatLE(),bytes.readFloatLE(),bytes.readFloatLE()),
       Point(bytes.readFloatLE(),bytes.readFloatLE(),bytes.readFloatLE()),
       Point(bytes.readFloatLE(),bytes.readFloatLE(),bytes.readFloatLE()),
       Point(bytes.readFloatLE(),bytes.readFloatLE(),bytes.readFloatLE()),
       bytes.readShortLE())
   }
+
 
 
   //radians
@@ -70,4 +73,40 @@ class stl(path:String) {
     })
   }
 
+  def addStl(stl:Stl): Stl ={
+    triangles = triangles ++ stl.triangles
+    count += stl.count
+    this
+  }
+
+  def writeStl(name: String): Unit ={
+    println(s"Writing ${(80+4+(count*50))/1024/1024} Megabytes.")
+    val buffer = Unpooled.buffer(80+4+(count*50))
+    header.resetReaderIndex()
+    buffer.writeBytes(header)
+    buffer.writeIntLE(count)
+    triangles.foreach(triangle =>{
+      buffer.writeFloatLE(triangle.normal.x)
+      buffer.writeFloatLE(triangle.normal.y)
+      buffer.writeFloatLE(triangle.normal.z)
+      buffer.writeFloatLE(triangle.v1.x)
+      buffer.writeFloatLE(triangle.v1.y)
+      buffer.writeFloatLE(triangle.v1.z)
+      buffer.writeFloatLE(triangle.v2.x)
+      buffer.writeFloatLE(triangle.v2.y)
+      buffer.writeFloatLE(triangle.v2.z)
+      buffer.writeFloatLE(triangle.v3.x)
+      buffer.writeFloatLE(triangle.v3.y)
+      buffer.writeFloatLE(triangle.v3.z)
+      buffer.writeShortLE(triangle.color)
+    })
+    val fc = new FileOutputStream(name).getChannel
+    fc.write(buffer.asReadOnly().nioBuffer())
+  }
+}
+
+object Stl{
+  def mergeStls(stls: Stl*): Stl = {
+    stls.reduceLeft(_.addStl(_))
+  }
 }

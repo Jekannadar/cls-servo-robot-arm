@@ -115,6 +115,7 @@ lib_managed/
 src_managed/
 project/boot/
 project/plugins/project/
+project/target/
 .history
 .cache
 .lib/
@@ -123,5 +124,7 @@ project/plugins/project/
 ### Scala ###
 *.class
 *.log
+
+generated/**/*.stl
 
 # End of https://www.toptal.com/developers/gitignore/api/sbt,scala,intellij

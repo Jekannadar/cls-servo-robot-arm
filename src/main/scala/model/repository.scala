@@ -13,9 +13,10 @@ class Repository {
     def apply(): HighTorqueShoulderAndElbow = HighTorqueShoulderAndElbow()
   }
 
+  /*
   @combinator object highTorqueNone {
     def apply(): HighTorqueNone = HighTorqueNone()
-  }
+  }*/
 
   @combinator object crossRollerBearing {
     def apply(): CrossRollerBearing = CrossRollerBearing()
@@ -27,6 +28,10 @@ class Repository {
 
   @combinator object mountingPlateNoBeam {
     def apply(servo: Servo with NotRotary): MountingPlateNoBeam = MountingPlateNoBeam(servo)
+  }
+
+  @combinator object mountingPlateBase {
+    def apply(servo: Servo with NotRotary): MountingPlateBase = MountingPlateBase(servo)
   }
 
   @combinator object mountingPlateSingleBeam {
@@ -83,6 +88,27 @@ class Repository {
   @combinator object outputMountQuadBeam {
     def apply(quadConnector: Connector with Quad): OutputMountQuadBeam =
       OutputMountQuadBeam(quadConnector)
+  }
+
+  @combinator object outputMountNoBeamHorizontal {
+    def apply(
+               mountingPlate: MountingPlate with NoConnector
+             ): OutputMountNoBeamHorizontal  = OutputMountNoBeamHorizontal (mountingPlate)
+  }
+
+  @combinator object outputMountSingleBeamHorizontal  {
+    def apply(singleConnector: Connector with Single): OutputMountSingleBeamHorizontal  =
+      OutputMountSingleBeamHorizontal (singleConnector)
+  }
+
+  @combinator object outputMountDoubleBeamHorizontal  {
+    def apply(doubleConnector: Connector with Double): OutputMountDoubleBeamHorizontal  =
+      OutputMountDoubleBeamHorizontal (doubleConnector)
+  }
+
+  @combinator object outputMountQuadBeamHorizontal  {
+    def apply(quadConnector: Connector with Quad): OutputMountQuadBeamHorizontal  =
+      OutputMountQuadBeamHorizontal (quadConnector)
   }
 
   @combinator object rotaryOutput {
