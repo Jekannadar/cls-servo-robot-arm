@@ -1,12 +1,31 @@
-package verycoolrobotstuff
+package model
 
-import model.Repository
-import verycoolrobotstuff.robot.{Base, BaseCompatible, HighTorqueNone, IndustrialBallBearing, OutputMount, OutputMountNoBeam, RotaryMountingPlateNoBeam, xl430w250t}
+import model.robot.{Base, Connected, Effector, HundredFiftyMMBase, Joint, Link, Physical, Robot, Servo, xl430w250t}
+import shapeless.HList.ListCompat.::
+import shapeless.{::, HList, HNil, LabelledGeneric, Lazy, Poly1, Witness}
+import shapeless.PolyDefns.{Case, Compose}
+import shapeless.labelled.FieldType
+import shapeless.ops.hlist.{FlatMapper, MapFolder}
 
-import scala.reflect.runtime.universe
+import scala.language.postfixOps
 
 package robot {
-  sealed trait Robot
+
+  class Link(val parts: Vector[Connected]){
+  }
+
+  class Joint{
+    val id = 0
+  }
+
+  class Robot{
+    val links: List[Link] = List()
+    val joints: List[Link] = List()
+  }
+
+  sealed trait Connected{
+    def next: Connected
+  }
 
   sealed trait Bearing
 
@@ -14,23 +33,45 @@ package robot {
 
   sealed trait Effector extends Drivable
 
-  sealed trait Servo {
+  sealed trait Servo extends Connected {
     val drivable: Drivable
+
+    override def next: Connected = drivable
   }
 
-  sealed trait MountingPlate {
+  sealed trait MountingPlate extends Connected {
     val servo: Servo
+
+    override def next: Connected = servo
+  }
+
+  sealed trait Base extends Connected{
+    val bearing: Bearing
+    val servo: Servo with BaseCompatible with Rotary
+    val highTorqueJointsSpecifier: HighTorqueJointsSpecifier
+
+    override def next: Connected = servo
+  }
+
+  sealed trait BasePlate extends Drivable {
+    val mountingPlate: MountingPlate with BaseCompatible with NotRotary
+
+    override def next: Connected = mountingPlate
   }
 
   sealed trait BaseCompatible
 
-  sealed trait Drivable
+  sealed trait Drivable extends Connected
 
   sealed trait Double
 
   sealed trait NoConnector
 
-  sealed trait Connector
+  sealed trait Connector extends Connected{
+    val mountingPlate: MountingPlate
+
+    override def next: Connected = mountingPlate
+  }
 
   sealed trait Quad
 
@@ -68,30 +109,46 @@ package robot {
 
   case class RotaryMountingPlateQuadBeam(servo: Servo with Rotary) extends MountingPlate with Quad with Rotary
 
-  case class OutputMountNoBeam(mountingPlate: MountingPlate with NoConnector) extends NoConnector with OutputMount with NotRotary
+  case class OutputMountNoBeam(mountingPlate: MountingPlate with NoConnector) extends NoConnector with OutputMount with NotRotary {
+    override def next: Connected = mountingPlate
+  }
 
-  case class OutputMountSingleBeam(singleConnector: Connector with Single) extends Single with OutputMount with NotRotary
+  case class OutputMountSingleBeam(singleConnector: Connector with Single) extends Single with OutputMount with NotRotary {
+    override def next: Connected = singleConnector
+  }
 
-  case class OutputMountDoubleBeam(doubleConnector: Connector with Double) extends Double with OutputMount with NotRotary
+  case class OutputMountDoubleBeam(doubleConnector: Connector with Double) extends Double with OutputMount with NotRotary {
+    override def next: Connected = doubleConnector
+  }
 
-  case class OutputMountQuadBeam(quadConnector: Connector with Quad) extends Quad with OutputMount with NotRotary
+  case class OutputMountQuadBeam(quadConnector: Connector with Quad) extends Quad with OutputMount with NotRotary {
+    override def next: Connected = quadConnector
+  }
 
-  case class RotaryOutput(servo: xl430w250t) extends OutputMount with Rotary
+  case class RotaryOutput(servo: xl430w250t) extends OutputMount with Rotary {
+    override def next: Connected = servo
+  }
 
   case class xl430w250t(drivable: Drivable with NotRotary) extends Servo with NotRotary
 
   case class xl430w250trotary(drivable: Drivable with Rotary) extends Servo with Rotary
 
-  case class SingleBeam(mountingPlate: MountingPlate with Single) extends Single with Connector
+  case class xl430w250tbase(drivable: BasePlate) extends Servo with Rotary with BaseCompatible
 
-  case class DoubleBeam(mountingPlate: MountingPlate with Double) extends Double with Connector
+  case class SingleBeam(mountingPlate: MountingPlate with Single) extends Single with Connector 
 
-  case class QuadBeam(mountingPlate: MountingPlate with Quad) extends Quad with Connector
+  case class DoubleBeam(mountingPlate: MountingPlate with Double) extends Double with Connector 
+
+  case class QuadBeam(mountingPlate: MountingPlate with Quad) extends Quad with Connector 
 
   //think if propped up allowed
-  case class Base(bearing: Bearing, mountingPlate: MountingPlate with BaseCompatible with NotRotary, highTorqueJointsSpecifier: HighTorqueJointsSpecifier)
+  case class HundredFiftyMMBase(bearing: Bearing, servo: Servo with BaseCompatible with Rotary, highTorqueJointsSpecifier: HighTorqueJointsSpecifier) extends  Base
 
-  case class Gripper() extends Effector with NotRotary
+  case class HundredMMBasePlate(mountingPlate: MountingPlate with BaseCompatible with NotRotary) extends BasePlate
+
+  case class Gripper() extends Effector with NotRotary {
+    override def next: Connected = null
+  }
 
   //Type Class containing all Physical, ergo non structural information
 
@@ -121,11 +178,11 @@ package robot {
 
     def getDimensions[A](a: A)(implicit dimensions: Dimensions[A]): Dimensions[A] = dimensions
 
-    getDimensions(Base(null,null,null)).translateX
-    getDimensions(OutputMountNoBeam(null)).translateX
+
   }
 
 }
+
 
 
 
@@ -151,13 +208,29 @@ object RobotCalculus extends App {
   import org.combinators.cls.interpreter._
 
 
+  def termToLinks(part: Connected, links: Vector[Link], current : Vector[Connected]) : Vector[Link] = {
+    part match {
+      case _: Servo => termToLinks(part.next,links :+ new Link(current :+ part),Vector[Connected]())
+      case _: Effector => links :+ new Link(Vector[Connected](part))
+      case _: Connected => termToLinks(part.next,links,current :+ part)
+    }
+  }
+
+
   val instance = new Repository()
   val repository = ReflectedRepository[Repository](instance,classLoader = getClass.getClassLoader)
-  val available = List[Tagged](Tagged(Base), Tagged(xl430w250t))
+  val available = List[Tagged](Tagged(HundredFiftyMMBase), Tagged(xl430w250t))
   val availRepo = available.foldLeft(repository)((repo, c) => repo.addCombinator(c.c)(c.weakTypeTag))
   val result = availRepo.inhabit[Base]()
-  //result.rules.foreach(println(_))
-  result.interpretedTerms.values(15)._2.foreach(println(_))
+
+  println(result.interpretedTerms.values(10)._2(1))
+  //termToLinks(result.interpretedTerms.values(15)._2(1),Vector[Link](),Vector[Connected]()).foreach(println)
+  termToLinks(result.interpretedTerms.values(15)._2(1),Vector[Link](),Vector[Connected]()).foreach(link => {
+    link.parts.foreach(part => print(s"${part.getClass.getName},"))
+    println(" ")
+  })
 
 }
+
+
 

@@ -1,7 +1,7 @@
 package model
 
 import org.combinators.cls.interpreter.combinator
-import verycoolrobotstuff.robot._
+import model.robot._
 
 class Repository {
 
@@ -99,6 +99,11 @@ class Repository {
       xl430w250trotary(drivable)
   }
 
+  @combinator object cxl430w250tbase {
+    def apply(drivable: BasePlate): xl430w250tbase =
+      xl430w250tbase(drivable)
+  }
+
   @combinator object singleBeam {
     def apply(mountingPlate: MountingPlate with Single): SingleBeam =
       SingleBeam(mountingPlate)
@@ -122,6 +127,12 @@ class Repository {
         highTorqueJointsSpecifier: HighTorqueJointsSpecifier
     ): Base = Base(bearing, mountingPlate, highTorqueJointsSpecifier)
   }*/
+
+
+  @combinator object hundredMMBasePlate {
+    def apply(mountingPlate: MountingPlate with BaseCompatible with NotRotary): HundredMMBasePlate = HundredMMBasePlate(mountingPlate)
+  }
+
 
   @combinator object gripper {
     def apply(): Gripper = Gripper()
